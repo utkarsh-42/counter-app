@@ -6,33 +6,65 @@ import { useRouter } from 'next/navigation';
 import PocketBase from 'pocketbase';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import CreateCounter from './creater-counter';
+import Link from 'next/link';
 
 
-export default function Counters(){
+export default async function Counters() {
     const pb = new PocketBase('http://127.0.0.1:8090');
     const isLoggedIn = pb.authStore.isValid
     const router = useRouter()
-    const [components, setComponents] = useState([<CounterCard/>]); 
+    async function addComponent() {
+        const data = {
+            "name": "test",
+            "count": 0,
+            "desc": "test",
+            "field": pb.authStore.model.id
+        };
 
-    function addComponent() { 
-    
-        setComponents([...components, <CounterCard/>]) 
-        
-      }
-if (!isLoggedIn){
-router?.push('/')
-}
+        const record = await pb.collection('counter').create(data);
+        // setComponents([...components, <CounterCard/>]) 
+        router.refresh()
+
+    }
+    async function getNotes() {
+        const resultList = await pb.collection('counter').getList(1, 50, {
+            sort: 'created',
+        });
+        const data = resultList.items;
+        console.log(data)
+        return data
+    }
+
+    const notes = await getNotes();
+    console.log(notes)
+    if (!isLoggedIn) {
+        router?.push('/')
+    }
 
 
-    return(
+
+    return (
         <main className='m-24'>
-       <Button variant="ghost" onClick={addComponent}> Add Counter<Plus/></Button>
-    <div className="m-4 rounded-md grid grid-cols-4 gap-12">
-       {/* <Button variant="ghost" onClick={AddButton}>Add Counter<Plus/> {components.map((item, i) => item)}</Button> */}
-       {components.map((item, i) => item)}
-       </div>
+            <Button variant="ghost" onClick={addComponent}> Add Counter<Plus /></Button>
+            <div>
+                <h1>Notes</h1>
+                <div>
+                    {notes?.map((note) => {
+                        return <Note key={note.id} note={note} />;
+                    })}
+                </div>
+            </div>
         </main>
     )
+
+    function Note({ note }: any) {
+        const { name, count, desc, id } = note || {};
+
+        return (
+            <CounterCard name={name} desc={desc} count={count} id={id} />
+        );
+    }
 }
 
 
