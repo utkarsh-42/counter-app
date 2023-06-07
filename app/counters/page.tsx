@@ -4,11 +4,6 @@ import { Button } from '@/components/ui/button';
 import { Plus } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import PocketBase from 'pocketbase';
-import { useState } from 'react';
-import { useForm } from 'react-hook-form';
-import CreateCounter from './creater-counter';
-import Link from 'next/link';
-
 
 export default async function Counters() {
     const pb = new PocketBase('http://127.0.0.1:8090');
@@ -48,7 +43,7 @@ export default async function Counters() {
         <main className='m-24'>
             <Button variant="ghost" onClick={addComponent}> Add Counter<Plus /></Button>
             <div>
-                <h1>Notes</h1>
+                <h1>My Counters</h1>
                 <div>
                     {notes?.map((note) => {
                         return <Note key={note.id} note={note} />;

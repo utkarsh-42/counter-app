@@ -46,7 +46,18 @@ export function CounterCard({ name = "My Counter", desc = "Card description", co
     router.refresh()
   }
 
-  
+  const editName = async (value: any) => {
+    await pb.collection('counter').update(id, { name: value });
+    router.refresh()
+  }
+
+  const editDesc = async (value: any) => {
+    await pb.collection('counter').update(id, { desc: value });
+    router.refresh()
+  }
+
+
+
   const deleteCounter = async () => {
 
     await pb.collection('counter').delete(id);
@@ -56,31 +67,37 @@ export function CounterCard({ name = "My Counter", desc = "Card description", co
     // });
     router.refresh()
   }
-  const save = () => { alert("text"); }
-  const cancel = () => { alert("Cancelled") }
 
   return (
     <main>
       <Card className={cn("w-[380px]")}>
         <CardHeader>
-        <Button onClick={deleteCounter}>Delete<Delete/></Button>
+          <Button onClick={deleteCounter}>Delete<Delete /></Button>
 
           <CardTitle>
             <EasyEdit
               type={Types.TEXT}
-              onSave={save}
-              saveButtonLabel="Save Me"
-              cancelButtonLabel="Cancel Me"
+              onSave={editName}
+              saveButtonLabel="Save"
+              cancelButtonLabel="Cancel"
               attributes={{ name: "awesome-input", id: 1 }}
+              placeholder={name}
             />
           </CardTitle>
-          <CardDescription>{desc}</CardDescription>
+          <CardDescription><EasyEdit
+            type={Types.TEXT}
+            onSave={editDesc}
+            saveButtonLabel="Save"
+            cancelButtonLabel="Cancel"
+            attributes={{ name: "awesome-input", id: 1 }}
+            placeholder={desc}
+          /></CardDescription>
         </CardHeader>
         <CardFooter className="flex justify-between">
           <Button variant="ghost" onClick={decreaseCounter}><Minus /></Button>
           {counter}
           <Button onClick={increaseCounter}><Plus /></Button>
-          
+
         </CardFooter>
       </Card>
     </main>
