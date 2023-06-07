@@ -25,7 +25,7 @@ export function CounterCard({ name = "My Counter", desc = "Card description", co
 
   const [counter, setCounter] = useState(count);
   const [cardtitle, setCardtitle] = useState("My Card")
-  const pb = new PocketBase('http://127.0.0.1:8090');
+  const pb = new PocketBase('http://139.59.6.59:80');
   const isLoggedIn = pb.authStore.isValid
   const router = useRouter()
   const increaseCounter = async () => {

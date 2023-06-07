@@ -3,7 +3,7 @@ import PocketBase from 'pocketbase';
 import { useForm } from 'react-hook-form';
 
 export default function CreateCounter() {
-    const pb = new PocketBase('http://127.0.0.1:8090');
+    const pb = new PocketBase('http://139.59.6.59:80');
     const isLoggedIn = pb.authStore.isValid
     const { register, handleSubmit } = useForm();
 

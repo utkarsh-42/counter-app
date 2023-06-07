@@ -1,5 +1,4 @@
 'use client'
-import Link from "next/link"
 import PocketBase from 'pocketbase';
 
 import { siteConfig } from "@/config/site"
@@ -12,7 +11,7 @@ import { useRouter } from "next/navigation";
 
 export function SiteHeader() {
   const logout = useLogout();
-  const pb = new PocketBase('http://127.0.0.1:8090');
+  const pb = new PocketBase('http://139.59.6.59:80');
   const isLoggedIn = pb.authStore.isValid
   const router = useRouter()
   function redirecttosignup(){

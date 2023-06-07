@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 import PocketBase from 'pocketbase';
 
 export default async function Counters() {
-    const pb = new PocketBase('http://127.0.0.1:8090');
+    const pb = new PocketBase('http://139.59.6.59:80');
     const isLoggedIn = pb.authStore.isValid
     const router = useRouter()
     async function addComponent() {
@@ -27,12 +27,10 @@ export default async function Counters() {
             sort: 'created',
         });
         const data = resultList.items;
-        console.log(data)
         return data
     }
 
     const notes = await getNotes();
-    console.log(notes)
     if (!isLoggedIn) {
         router?.push('/')
     }

@@ -1,11 +1,10 @@
 import PocketBase from 'pocketbase';
-import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import useLogout from './hooks/useLogout';
 import useLogin from './hooks/useLogin';
 
 export default function Auth(){
-    const pb = new PocketBase('http://127.0.0.1:8090');
+    const pb = new PocketBase('http://139.59.6.59:80');
     const logout = useLogout();
     const {login,loading} = useLogin();
     const isLoggedIn = pb.authStore.isValid

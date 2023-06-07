@@ -6,7 +6,7 @@ import { useForm } from 'react-hook-form';
 
 
 export default function Signup(){
-    const pb = new PocketBase('http://127.0.0.1:8090');
+    const pb = new PocketBase('http://139.59.6.59:80');
     const [loading,setLoading] = useState(false);
     const isLoggedIn = pb.authStore.isValid
     const router = useRouter()
