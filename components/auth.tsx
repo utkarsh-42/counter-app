@@ -14,17 +14,13 @@ export default function Auth(){
     async function onSubmit(data: any){
         login({email:data.email, password: data.password})
 }
-
-
 if (isLoggedIn)
     return(<>
-    <h1>{pb.authStore.model.email}</h1>
-    <h1>{pb.authStore.model.id}</h1>
     <button onClick={logout}>Log Out</button>
     </>)
     return(
         <>
-        <h1>Logged in: {isLoggedIn && pb.authStore.model.email}</h1>
+        <h1>Logged in: {isLoggedIn && pb.authStore.model!.email}</h1>
         <form onSubmit={handleSubmit(onSubmit)}>
             <input type='email' placeholder='email' {...register('email')}/>
             <input type='password' placeholder='password' {...register('password')}/>

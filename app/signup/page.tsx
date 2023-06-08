@@ -1,4 +1,5 @@
 'use client'
+import Auth from '@/components/auth';
 import { useRouter } from 'next/navigation';
 import PocketBase from 'pocketbase';
 import { useState } from 'react';
@@ -11,7 +12,6 @@ export default function Signup(){
     const isLoggedIn = pb.authStore.isValid
     const router = useRouter()
     const {register,handleSubmit} = useForm();
-    console.log(register("email"));
 
     async function onSubmit(data: any){
         setLoading(true)
@@ -30,6 +30,7 @@ if (isLoggedIn){
 
     return(
         <main className='m-24'>
+            <Auth/>
         <form onSubmit={handleSubmit(onSubmit)}>
             <input type='email' placeholder='email' {...register('email')}/>
             <input type='password' placeholder='password' {...register('password')}/>

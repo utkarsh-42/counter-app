@@ -1,24 +1,32 @@
 
+import { Button } from '@/components/ui/button';
+import { Plus } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 import PocketBase from 'pocketbase';
 import { useForm } from 'react-hook-form';
 
 export default function CreateCounter() {
     const pb = new PocketBase('http://139.59.6.59:80');
     const isLoggedIn = pb.authStore.isValid
-    const { register, handleSubmit } = useForm();
+    const router = useRouter()
+    const create = async() => {
+        const data = {
+            "name": "test",
+            "count": 0,
+            "desc": "test",
+            "field": pb.authStore.model!.id
+        };
 
-    async function onSubmit(data: any){
-        console.log(data)
         const record = await pb.collection('counter').create(data);
+        // setComponents([...components, <CounterCard/>]) 
+        router.refresh()
 
     }
+
+      
     return (
         <main className='m-24'>
-            <form onSubmit={handleSubmit(onSubmit)}>
-                <input type='text' placeholder='counter name' value='My Counter' {...register('name')} />
-                <input type='number' placeholder='password' {...register('count')} />
-                
-            </form>
+           <Button variant="ghost" onClick={create}> Add Counter<Plus /></Button>
         </main>
 
     )
