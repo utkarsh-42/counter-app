@@ -15,7 +15,7 @@ export default function CreateCounter() {
             "name": "test",
             "count": 0,
             "desc": "test",
-            "field": pb.authStore.model.id
+            "field": pb.authStore.model!.id
         };
 
         const record = await pb.collection('counter').create(data);
