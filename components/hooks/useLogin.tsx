@@ -3,7 +3,8 @@ import PocketBase from 'pocketbase';
 import { useState } from 'react';
 
 export default function useLogin(){
-    const pb = new PocketBase('http://139.59.6.59:80');
+    const url = 'https://fit-engineer.pockethost.io'
+const pb = new PocketBase(url)
     const [loading,setLoading] = useState(false);
     const router = useRouter()
 

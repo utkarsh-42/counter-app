@@ -25,7 +25,8 @@ export function CounterCard({ name = "My Counter", desc = "Card description", co
 
   const [counter, setCounter] = useState(count);
   const [cardtitle, setCardtitle] = useState("My Card")
-  const pb = new PocketBase('http://139.59.6.59:80');
+  const url = 'https://fit-engineer.pockethost.io'
+const pb = new PocketBase(url)
   const isLoggedIn = pb.authStore.isValid
   const router = useRouter()
   const increaseCounter = async () => {

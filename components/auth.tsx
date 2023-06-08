@@ -4,7 +4,8 @@ import useLogout from './hooks/useLogout';
 import useLogin from './hooks/useLogin';
 
 export default function Auth(){
-    const pb = new PocketBase('http://139.59.6.59:80');
+    const url = 'https://fit-engineer.pockethost.io'
+const pb = new PocketBase(url)
     const logout = useLogout();
     const {login,loading} = useLogin();
     const isLoggedIn = pb.authStore.isValid

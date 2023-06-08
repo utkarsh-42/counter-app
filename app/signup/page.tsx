@@ -7,7 +7,8 @@ import { useForm } from 'react-hook-form';
 
 
 export default function Signup(){
-    const pb = new PocketBase('http://139.59.6.59:80');
+    const url = 'https://fit-engineer.pockethost.io'
+const pb = new PocketBase(url)
     const [loading,setLoading] = useState(false);
     const isLoggedIn = pb.authStore.isValid
     const router = useRouter()

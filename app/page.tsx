@@ -4,7 +4,8 @@ import PocketBase from 'pocketbase';
 import { useRouter } from "next/navigation"
 
 export default function IndexPage() {
-  const pb = new PocketBase('http://139.59.6.59:80');
+  const url = 'https://fit-engineer.pockethost.io'
+const pb = new PocketBase(url)
   const isLoggedIn = pb.authStore.isValid
   const router = useRouter()
   if (isLoggedIn)

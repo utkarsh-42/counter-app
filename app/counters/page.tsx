@@ -4,7 +4,8 @@ import PocketBase from 'pocketbase';
 import CreateCounter from './creater-counter';
 
 export default async function Counters() {
-    const pb = new PocketBase('http://139.59.6.59:80');
+    const url = 'https://fit-engineer.pockethost.io'
+const pb = new PocketBase(url)
     const isLoggedIn = pb.authStore.isValid
     async function getNotes() {
         const resultList = await pb.collection('counter').getList(1, 50, {

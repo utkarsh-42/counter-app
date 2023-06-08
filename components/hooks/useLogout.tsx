@@ -4,7 +4,8 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 export default function useLogout(){
-    const pb = new PocketBase('http://139.59.6.59:80');
+    const url = 'https://fit-engineer.pockethost.io'
+const pb = new PocketBase(url)
     const [refresh,setRefresh] = useState(0)
     const router = useRouter()
 

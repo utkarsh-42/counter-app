@@ -6,7 +6,8 @@ import PocketBase from 'pocketbase';
 import { useForm } from 'react-hook-form';
 
 export default function CreateCounter() {
-    const pb = new PocketBase('http://139.59.6.59:80');
+    const url = 'https://fit-engineer.pockethost.io'
+    const pb = new PocketBase(url)
     const isLoggedIn = pb.authStore.isValid
     const router = useRouter()
     const create = async() => {
@@ -14,7 +15,7 @@ export default function CreateCounter() {
             "name": "test",
             "count": 0,
             "desc": "test",
-            "field": pb.authStore.model!.id
+            "field": pb.authStore.model.id
         };
 
         const record = await pb.collection('counter').create(data);
